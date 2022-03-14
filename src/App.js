@@ -12,6 +12,7 @@ import About from './pages/About';
 import Footer from './components/Footer';
 import Contact from './pages/Contact';
 import Booknow from './pages/Booknow';
+import FooterPage from './components/FooterPage';
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
           <Route exact path="/booknow/:slug" component={Booknow} />
           <Route component={Error}/>
         </Switch>
+        <FooterPage/>
         <Footer/>
       </BrowserRouter>
     </div>

@@ -10,9 +10,9 @@ export default function Home() {
         <>
             <Hero hero="defaultHero">
             </Hero>
-            <Banner title="Sewa In" subtitle="Sewa Ruangan Sesuai Kebutuhan Anda">
+            <Banner title="Graha Office" subtitle="Tingkatkan Branding Dan Citra Perusahaanmu Dengan Virtual Office">
                 <Link to="/rooms" className="btn btn-primary">
-                    Our Rooms
+                    Selengkapnya
                 </Link>
             </Banner>
             <Services />

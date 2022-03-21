@@ -14,6 +14,9 @@ import img9 from "./images/room-9.jpeg";
 import img10 from "./images/room-10.jpeg";
 import img11 from "./images/room-11.jpeg";
 import img12 from "./images/room-12.jpeg";
+import img13 from "./images/room-13.jpg";
+import img14 from "./images/room-14.jpg";
+import img15 from "./images/room-15.jpg";
 
 export default [
   {
@@ -420,10 +423,10 @@ export default [
       id: "8"
     },
     fields: {
-      name: "double deluxe",
+      name: "Ruang Meeting dan Taining",
       slug: "double-deluxe",
       type: "double",
-      price: 400,
+      price: 400.000,
       size: 500,
       capacity: 2,
       pets: true,
@@ -444,7 +447,7 @@ export default [
         {
           fields: {
             file: {
-              url: img8
+              url: img13
             }
           }
         },
@@ -648,10 +651,10 @@ export default [
       id: "12"
     },
     fields: {
-      name: "family deluxe",
+      name: "shared office",
       slug: "family-deluxe",
       type: "family",
-      price: 500,
+      price: 300.000,
       size: 700,
       capacity: 6,
       pets: true,
@@ -672,7 +675,7 @@ export default [
         {
           fields: {
             file: {
-              url: img12
+              url: img14
             }
           }
         },
@@ -705,10 +708,10 @@ export default [
       id: "13"
     },
     fields: {
-      name: "presidential",
+      name: "private room",
       slug: "presidential-room",
       type: "presidential",
-      price: 600,
+      price: 200,
       size: 1000,
       capacity: 10,
       pets: true,
@@ -729,7 +732,7 @@ export default [
         {
           fields: {
             file: {
-              url: room1
+              url: img15
             }
           }
         },

@@ -139,6 +139,7 @@ h6 {
 .nav-link:hover{
   color: #ffffff;
   border-bottom: 2px solid #ffffff;
+  border-radius: 15px;
 }
 .nav-link.active_class{
 color: #ffffff;
@@ -491,7 +492,6 @@ box-shadow: inset 0 -1px 0 #ddd;
 /* .filter-container {
   padding: 5rem 0;
 }
-
 .form-group {
   text-transform: capitalize;
 }

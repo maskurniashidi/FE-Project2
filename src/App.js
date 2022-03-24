@@ -9,10 +9,11 @@ import SingleRoom from './pages/SingleRoom';
 import Error from './pages/Error';
 import Navbar from './components/Navbar';
 import About from './pages/About';
-import Footer from './components/Footer';
 import Contact from './pages/Contact';
 import Booknow from './pages/Booknow';
-// import FooterPage from './components/FooterPage';
+import FooterPage from './components/FooterPage';
+import Login from './pages/Login'
+import Coba from './components/coba'
 
 function App() {
   return (
@@ -26,10 +27,11 @@ function App() {
           <Route exact path="/rooms/" component={Rooms}/>
           <Route exact path="/rooms/:slug" component={SingleRoom} />
           <Route exact path="/booknow/:slug" component={Booknow} />
+          <Route exact path="/Login" component={Login} />
+          <Route exact path="/Coba" component={Coba} />
           <Route component={Error}/>
         </Switch>
-        {/* <FooterPage/> */}
-        <Footer/>
+        <FooterPage/>
       </BrowserRouter>
     </div>
   );

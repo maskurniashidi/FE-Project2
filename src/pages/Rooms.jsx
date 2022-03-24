@@ -24,7 +24,6 @@ useEffect(() => {
         }); 
 }, []);
 
-
     return (
         <div>
             <Hero hero="roomsHero">

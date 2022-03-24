@@ -3,23 +3,50 @@ import { RoomContext } from '../context'
 import Loading from './Loading';
 import Room from './Room';
 import Title from './Title';
+import { useEffect, useState } from "react";
+import axios from "axios";
+import data from '../data';
 
+
+// export default function FeaturedRooms() {
 export default class FeaturedRooms extends Component {
-    static contextType = RoomContext;
-    render() {
-        let { loading, featuredRooms: rooms } = this.context;
-        console.log(rooms);
-        rooms = rooms.map(room => {
-            return <Room key={room.id} room={room} />
-        });
-        return (
+    // let { loading, featuredRooms: data } = this.context;
+    // const [id, setId] = useState("");
+    // const [name, setName] = useState("");
+    // const [space, setSpace] = useState("");
+    // const [capacity, setCapacity] = useState("");
+    // const [description, setDescription] = useState("");
+    // useEffect(() => {
+    //     axios
+    //         .get('http://127.0.0.1:8000/api/service/1')
+    //         .then((res) => {
+    //             console.log(res.data);
+    //             setId(res.data.id);
+    //             setName(res.data.name);
+    //             setSpace(res.data.space);
+    //             setCapacity(res.data.capacity);
+    //             setDescription(res.data.description);
+    //         })
+    //         .catch((err) => {
+    //             console.log(err);
+    //         });
+    // }, []);
 
-            <section className="featured-rooms container">
-                <Title title="Layanan Unggulan" />
-                <div className="row">
-                    {loading ? <Loading /> : rooms}
-                </div>
-            </section>
-        )
+        static contextType = RoomContext;
+        render() {
+            let { loading, featuredRooms: rooms } = this.context;
+            console.log(rooms);
+            rooms = rooms.map(room => {
+                return <Room key={room.id} room={room} />
+            });
+            return (
+    
+                <section className="featured-rooms container">
+                    <Title title="Layanan Unggulan" />
+                    <div className="row">
+                        {loading ? <Loading /> : rooms}
+                    </div>
+                </section>
+            )
+        }
     }
-}

@@ -113,6 +113,10 @@ h6 {
 
 /* end of globals */
 /* Navbar */
+.container-img {
+  filter: brightness(0) invert(1);
+  width: 12vw;
+}
 .nav-link{
   padding: 8px 15px;
   margin-left: 10px;
@@ -139,11 +143,12 @@ h6 {
 .nav-link:hover{
   color: #ffffff;
   border-bottom: 2px solid #ffffff;
-  border-radius: 15px;
+  border-radius: 1rem;
 }
 .nav-link.active_class{
 color: #ffffff;
 border: 2px solid #ffffff;
+border-radius: 1rem;
 font-weight: 800;
 }
 

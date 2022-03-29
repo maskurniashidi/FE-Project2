@@ -1,5 +1,5 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { NavLink, useHistory  } from 'react-router-dom';
 import { FaAlignRight } from 'react-icons/fa';
 import jquery from 'jquery';
 import Popup from "reactjs-popup";
@@ -7,11 +7,59 @@ import Login from '../pages/Login'
 import { Button } from '../components/Button'
 
 // for changing navbar  color
-jquery(window).scroll(function () {
-    jquery('nav').toggleClass('scrolled', jquery(this).scrollTop() > 0);
-})
 
-const Navbar = () => {
+function Navbarlogin() {
+    jquery(window).scroll(function () {
+        jquery('nav').toggleClass('scrolled', jquery(this).scrollTop() > 0);
+    })
+
+    
+const [click,setClick] = useState(false);
+// // const [dropdown, setDropdown] = useState(false);
+// // const [button, setButton] = useState(true);
+const history = useHistory()
+
+// const handleClick = () => setClick(!click);
+// const closeMobileMenu = () => setClick(false);
+
+// const onMouseEnter = () => {
+//     if(window.innerWidth < 960) {
+//         setDropdown(false);
+//     }else{
+//         setDropdown(true);
+//     }
+// };
+
+// const onMouseLeave = () => {
+//     if(window.innerWidth < 500) {
+//         setDropdown(false);
+//     }else{
+//         setDropdown(false);
+//     }
+// };
+
+
+// const showButton = () => {
+//     if (window.innerWidth <= 960) {
+//       setButton(false);
+//     } else {
+//       setButton(true);
+//     }
+//   };
+
+//   useEffect(() => {
+//     showButton();
+//   }, []);
+
+// //   window.addEventListener('resize', showButton);
+
+  const _onLogout = () => {
+    localStorage.removeItem("token");
+     history.replace("/");
+     window.location.reload();
+   };
+
+// const Navbar = () => {
     return (
         <>
             <nav className="navbar navbar-expand-sm navbar-dark bg-transparent py-2 fixed-top">
@@ -38,22 +86,14 @@ const Navbar = () => {
                                 <NavLink className="nav-link" activeClassName="active_class" exact to="/Bantuan">Help</NavLink>
                             </li>
                             
-                            {/* <li className="nav-item">
-                                <NavLink className="nav-link" activeClassName="active_class" exact to="/Login">Login</NavLink>
-                            </li> */}
+                  
+                            <li className='nav-item'>
+                                {/* // onMouseEnter = {onMouseEnter}
+                                // onMouseLeave = {onMouseLeave} */}
 
-                            <li className="PopUp">
-            {/* <Popup modal trigger={<NavLink>Sign In</NavLink>}> */}
-            <Popup modal trigger={<Button buttonStyle='btn--outline'>Sign In</Button>}>
-            {close => <Login close={close} />}
-            </Popup>
-            {/* {check local storage, kalo == login? => passing component; 
-            else signIn} 
-            
-            {checkSignIn() == 'login' ? <Popup/> : <ProfileBtn/>}
-
-            */}
-            </li>
+                           <NavLink className="nav-link" onClick={_onLogout}> Logout  </NavLink>
+      
+                             </li>
                         </ul>
                     </div>
                 </div>
@@ -61,4 +101,4 @@ const Navbar = () => {
         </>
     );
 }
-export default Navbar;
+export default Navbarlogin;

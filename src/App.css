@@ -95,7 +95,7 @@ h6 {
   margin-top: 100px;
 }
 .roomerror:hover .error{
-  background-color: #2C3E50;
+  background-color: #000000;
   color: #ffffff!important;
 }
 .error {
@@ -131,6 +131,14 @@ h6 {
   -ms-transition: .5s linear;
   -o-transition: .5s linear;
 }
+
+.navbar-logo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translate(25%, 50%);
+}
+
 .bg-transparent.scrolled {
   background-color: black!important;
   transition:500ms ease;
@@ -173,6 +181,8 @@ input[type=number]:focus,
 [contenteditable].form-control:focus {
 box-shadow: inset 0 -1px 0 #ddd;
 }
+
+
 
 
 /* end of navbar */
@@ -534,3 +544,4 @@ box-shadow: inset 0 -1px 0 #ddd;
   padding: 5px 8px;
 }
 /* end of about us */
+

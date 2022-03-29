@@ -2,10 +2,12 @@ import React from 'react'
 import { FaFacebookSquare, FaLinkedin } from 'react-icons/fa';
 import { IoLogoYoutube } from 'react-icons/io';
 import { AiFillInstagram } from 'react-icons/ai';
-import { Link } from 'react-router-dom';
+
 function About() {
     return (
+        
         <div className="container aboutus">
+         
             <div className="row">
                 <div className="col-md-6 col-12 my-auto">
                     <img src={require('../images/about.svg')} alt="about us" className="img-fluid" />

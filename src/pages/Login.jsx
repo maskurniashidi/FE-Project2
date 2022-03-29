@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import axios from 'axios';
 import Popup from 'reactjs-popup';
-// import Regis from './Regis';
+import Regis from './Register';
 import styled from 'styled-components';
 //import { useHistory } from 'react-router-dom';
 import swal from 'sweetalert';
@@ -10,7 +10,7 @@ import { BASE_URL,baseURL } from '../url';
 
 const Section = styled.section`
   background-color: #EDEFFD;
-  height: 350px;
+  height: 450px;
   width: 500px;
   display: block;
   background-repeat: no-repeat;
@@ -109,7 +109,7 @@ function Login({close}) {
         //set token on localStorage
         setError(false);
         console.log(res)
-        // localStorage.setItem('token', res.data.token);
+        localStorage.setItem('token', res.data.token);
         swal({
           icon: 'success',
           text: 'Berhasil!',
@@ -159,9 +159,9 @@ function Login({close}) {
             </form>
             <Acc>
             <a align="center" href>  Don't Have Account ?
-            {/* <Popup onClick={close} modal trigger={<u> Sign Up</u>}>
+            <Popup onClick={close} modal trigger={<u> Sign Up</u>}>
             {close => <Regis close={close} />}
-            </Popup> */}
+            </Popup>
             </a> 
             </Acc>
             </Left> 

@@ -70,12 +70,14 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { Card, Container, Row, Col, Button, Figure } from 'react-bootstrap';
 import Title from './Title';
+import img from '../images/room-1.jpeg'
 
 export default function FeatureRoom() {
-
     const [data, getData] = useState([]);
+    const [loading, setLoading] = useState(false);
+
     useEffect(() => {
-        axios.get(`http://127.0.0.1:8000/api/service/`)
+        axios.get(`http://127.0.0.1:8000/api/service`)
             .then((res) => {
                 console.log(res.data);
                 getData(res.data.data);
@@ -83,24 +85,28 @@ export default function FeatureRoom() {
             })
             .catch((err) => {
                 console.log(err);
-            });
-    }, []);
+            }).finally(() => { setLoading(false); });;
+    }, []); 
+    
+    if (loading) { return <p>Data is loading...</p>; }
+
 
     return (
         <Container className="grid" display="inline-block">
             <Title title="Layanan Unggulan" /> 
             <div class="row row-cols-3">
             
-                {data.map((data) => (
-                    <Card>
-                        <Card.Body>
-                            <Card.Title>{data.name}</Card.Title>
-                            <Card.Text>
-                                {data.description}
-                            </Card.Text>
-                        </Card.Body>
-                    </Card>
-                ))}
+            {Object.keys(data).map((item, i) => (
+                 <Card style={{ width: '18rem' }}>
+                  {data[item].images.map((image) => (
+                                     <img class="card-img-top" src={image.image_url} alt="Card image cap"></img>
+                                     ))}
+                    <div class="card-body">
+                                <Card.Title>{data[item].name}</Card.Title>
+                            <Card.Text> {data[item].description}</Card.Text>
+                    </div>
+                </Card>
+                 ))} 
             </div>
         </Container>
     );

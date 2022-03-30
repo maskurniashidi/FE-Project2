@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Title from './Title'
 import { FaSearchLocation,  FaPlusSquare, FaMoneyBill,FaPallet, FaUsers, FaMailBulk } from 'react-icons/fa'
+import { Card, Container, Row, Col, Button, Figure } from 'react-bootstrap';
 
 export default class Services extends Component {
     state = {
@@ -56,6 +57,7 @@ export default class Services extends Component {
                                     </article>
                                 </div>
                             </div>
+                        
                         )
                     })}
                 </div>

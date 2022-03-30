@@ -16,6 +16,7 @@ import Login from './pages/Login'
 import Coba from './components/coba'
 import Bantuan from './components/Bantuan/Bantuan'
 import Navbarlogin from './components/NavbarLogin'
+import Order from './pages/Order'
 import {useEffect, useState} from 'react';
 
 function App() {
@@ -63,6 +64,7 @@ function App() {
           <Route exact path="/Login" component={Login} />
           <Route exact path="/Coba" component={Coba} />
           <Route exact path="/Bantuan" component={Bantuan} />
+          <Route exact path="/Order" component={Order} />
           <Route component={Error}/>
         </Switch>
         <FooterPage/>

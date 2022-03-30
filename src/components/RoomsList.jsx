@@ -2,6 +2,7 @@ import React from 'react'
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Card, Container, Row, Col, Button, Figure } from 'react-bootstrap';
+import { useHistory, NavLink } from 'react-router-dom';
 
 export default function RoomsList() {
 
@@ -21,13 +22,17 @@ export default function RoomsList() {
     return (
         <Container className="grid" display="inline-block">
             <div class="row row-cols-3">
-                {data.map((data) => (
+            {Object.keys(data).map((item, i) => (
                     <Card>
                         <Card.Body>
-                            <Card.Title>{data.name}</Card.Title>
-                            <Card.Text>
-                                {data.description}
-                            </Card.Text>
+                     
+                            <NavLink to= {`/SingleRoom/${data[item].id}`} style={{ textDecoration: 'none' }}>
+                                     <img class="card-img-top" src={data[item].image_url} alt="Card image cap"></img>
+                                      <div class="card-body">
+                                           <Card.Title>{data[item].name}</Card.Title>
+                                           <Card.Text> {data[item].description}</Card.Text>
+                                      </div>
+                            </NavLink> 
                         </Card.Body>
                     </Card>
                 ))}

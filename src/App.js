@@ -58,7 +58,7 @@ function App() {
           <Route exact path="/about" component={About} />
           <Route exact path="/contact" component={Contact} />
           <Route exact path="/rooms/" component={Rooms}/>
-          <Route exact path="/rooms/:slug" component={SingleRoom} />
+          <Route exact path="/rooms/:id" component={SingleRoom} />
           <Route exact path="/booknow/:slug" component={Booknow} />
           <Route exact path="/Login" component={Login} />
           <Route exact path="/Coba" component={Coba} />

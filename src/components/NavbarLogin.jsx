@@ -52,7 +52,7 @@ const history = useHistory()
                                 <NavLink className="nav-link" activeClassName="active_class" exact to="/Bantuan">Help</NavLink>
                             </li>
                             <li className="nav-item">
-                                <NavLink className="nav-link" activeClassName="active_class" exact to="/Bantuan">My Order</NavLink>
+                                <NavLink className="nav-link" activeClassName="active_class" exact to="/#">My Order</NavLink>
                             </li>
                             
                   

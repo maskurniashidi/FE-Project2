@@ -43,16 +43,9 @@ const Navbar = () => {
                             </li> */}
 
                             <li className="PopUp">
-            {/* <Popup modal trigger={<NavLink>Sign In</NavLink>}> */}
-            <Popup modal trigger={<Button buttonStyle='btn--outline'>Sign In</Button>}>
-            {close => <Login close={close} />}
-            </Popup>
-            {/* {check local storage, kalo == login? => passing component; 
-            else signIn} 
-            
-            {checkSignIn() == 'login' ? <Popup/> : <ProfileBtn/>}
-
-            */}
+                            <Popup modal trigger={<Button buttonStyle='btn--outline'>Sign In</Button>}>
+                                  {close => <Login close={close} />}
+                            </Popup>
             </li>
                         </ul>
                     </div>

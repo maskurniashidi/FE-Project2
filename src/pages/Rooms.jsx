@@ -13,7 +13,7 @@ const Rooms = () => {
     const [data, setData] = useState([]);
 useEffect(() => {
     axios
-        .get('http://127.0.0.1:8000/api/service/1')
+        .get('http://127.0.0.1:8000/api/service')
         .then((res) => {
             console.log(res.data);
             setData(res.data);

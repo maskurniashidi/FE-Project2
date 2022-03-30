@@ -19,40 +19,6 @@ const [click,setClick] = useState(false);
 // // const [button, setButton] = useState(true);
 const history = useHistory()
 
-// const handleClick = () => setClick(!click);
-// const closeMobileMenu = () => setClick(false);
-
-// const onMouseEnter = () => {
-//     if(window.innerWidth < 960) {
-//         setDropdown(false);
-//     }else{
-//         setDropdown(true);
-//     }
-// };
-
-// const onMouseLeave = () => {
-//     if(window.innerWidth < 500) {
-//         setDropdown(false);
-//     }else{
-//         setDropdown(false);
-//     }
-// };
-
-
-// const showButton = () => {
-//     if (window.innerWidth <= 960) {
-//       setButton(false);
-//     } else {
-//       setButton(true);
-//     }
-//   };
-
-//   useEffect(() => {
-//     showButton();
-//   }, []);
-
-// //   window.addEventListener('resize', showButton);
-
   const _onLogout = () => {
     localStorage.removeItem("token");
      history.replace("/");
@@ -85,15 +51,21 @@ const history = useHistory()
                             <li className="nav-item">
                                 <NavLink className="nav-link" activeClassName="active_class" exact to="/Bantuan">Help</NavLink>
                             </li>
+                            <li className="nav-item">
+                                <NavLink className="nav-link" activeClassName="active_class" exact to="/Bantuan">My Order</NavLink>
+                            </li>
                             
                   
-                            <li className='nav-item'>
+                           
                                 {/* // onMouseEnter = {onMouseEnter}
                                 // onMouseLeave = {onMouseLeave} */}
 
-                           <NavLink className="nav-link" onClick={_onLogout}> Logout  </NavLink>
-      
-                             </li>
+                           {/* <NavLink className="nav-link" onClick={_onLogout}> Logout  </NavLink> */}
+
+                           <li className="nav-item">
+                                <Button className="nav-link" onClick={_onLogout} >Sign Out</Button>
+                            </li>
+                             
                         </ul>
                     </div>
                 </div>

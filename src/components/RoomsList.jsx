@@ -1,33 +1,37 @@
 import React from 'react'
-import Room from './Room';
+import { useState, useEffect } from "react";
+import axios from "axios";
+import { Card, Container, Row, Col, Button, Figure } from 'react-bootstrap';
 
-export default function RoomsList({rooms}) {
-    if(rooms.length === 0){
-       return (
-            <div className="container my-5">
-                <div className="card shadow-lg border-0 p-4">
-                    <div className="row">
-                        <div className="col-md-6 col-12 my-auto">
-                            <img src={require('../images/notfound.svg')}  alt="not found" className="img-fluid"/>
-                        </div>
-                        <div className="col-md-6 col-12 mx-auto">
-                            <div className="empty-search">
-                                <h3 className="display-4">Unfortunately no rooms matched your search parameters</h3>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-       )
-    }
+export default function RoomsList() {
+
+    const [data, getData] = useState([]);
+    useEffect(() => {
+        axios.get(`http://127.0.0.1:8000/api/service/`)
+            .then((res) => {
+                console.log(res.data);
+                getData(res.data.data);
+                // setId(res.data.id);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    }, []);
+
     return (
-        <section className="container">
-            <div className="row my-5">
-               {rooms.map(item => {
-                    return <Room key={item.id} room={item}/>;
-                })
-               }
+        <Container className="grid" display="inline-block">
+            <div class="row row-cols-3">
+                {data.map((data) => (
+                    <Card>
+                        <Card.Body>
+                            <Card.Title>{data.name}</Card.Title>
+                            <Card.Text>
+                                {data.description}
+                            </Card.Text>
+                        </Card.Body>
+                    </Card>
+                ))}
             </div>
-        </section>
+        </Container>
     );
 }

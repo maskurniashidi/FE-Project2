@@ -5,6 +5,7 @@ import moment from 'moment';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import defaultBcg from '../images/room-3.jpeg';
+
 export default class Booknow extends Component {
     constructor (props){
         super(props);

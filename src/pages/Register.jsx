@@ -92,6 +92,7 @@ function Register({ close }) {
             'name': regisInput.name,
             'email': regisInput.email,
             'password': regisInput.password,
+            // 'is_admin' : '0',
         }
         //setLoading(true);
         await axios.post('http://127.0.0.1:8000/api/register', body).then(response => {

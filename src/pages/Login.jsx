@@ -6,7 +6,7 @@ import styled from 'styled-components';
 //import { useHistory } from 'react-router-dom';
 import swal from 'sweetalert';
 import { useState } from 'react';
-import { BASE_URL,baseURL } from '../url';
+import { baseURL } from '../url';
 
 const Section = styled.section`
   background-color: #EDEFFD;
@@ -73,100 +73,110 @@ const Button = styled.a`
   box-shadow: 0 15px 14px rgb(0 42 177 / 12%);
 `;
 
-function Login({close}) {
+function Login({ close }) {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
-  //const apilogin='https://api.gunma.my.id/api/v1/login-user';
 
-   useEffect(() => {
-     if (email || password) {
+  useEffect(() => {
+    if (email || password) {
       setError(false);
-     }
-     return () => {};
-   }, [email, password]);
+    }
+    return () => { };
+  }, [email, password]);
 
-  function handleLogin (){
-      // var datauser ={
-      //   email : email,
-      //   password : password,
-      // }
+  function handleLogin() {
+    // var datauser ={
+    //   email : email,
+    //   password : password,
+    // }
 
-      console.log(email,password);
-      axios.post(baseURL + '/api/login', {
-        email : email,
-        password : password,
-      })
+    console.log(email, password);
+    axios.post(baseURL + '/api/login', {
+      email: email,
+      password: password,
+    })
 
-// const variables = {
-//                     email: email,
-//                     password: password
-//  } 
-// axios.post(baseURL + "/api/login?email&password", variables)
-      
+      // const variables = {
+      //                     email: email,
+      //                     password: password
+      //  } 
+      // axios.post(baseURL + "/api/login?email&password", variables)
+
       .then(function (res) {
         //set token on localStorage
-        setError(false);
-        console.log(res)
-        localStorage.setItem('token', res.data.token);
+        if (res.data.data.is_admin = "0"){
+          setError(false);
+          console.log(res);
+          localStorage.setItem('token', res.data.data.token);
+          swal({
+            icon: 'success',
+            text: 'Berhasil',
+          })
+          window.location.reload();
+        }
+       if(res.data.data.is_admin = "1"){
+          setError(false);
+          console.log(res);
+          localStorage.setItem('token', res.data.data.token);
+          swal({
+            icon: 'success',
+            text: 'Admin ni Boss',
+          })
+          window.location.href = "/HomeAdmin/";
+        }
+      }).catch((err) => {
+        setError(true);
         swal({
-          icon: 'success',
-          text: 'Berhasil!',
-        })
-        window.location.reload();
-
-    }).catch((err) =>{
-      setError(true);
-      swal({
-        icon: 'error',
-        text: 'Maaf! Terjadi Error',
+          icon: 'error',
+          text: 'Maaf! Terjadi Error',
+        });
       })
-    })
   };
-    return ( 
-      <Section>
-        <div>       
-          <Right>
+  return (
+    <Section>
+      <div>
+        <Right>
           <a href className="close" onClick={close}>
-          &times;
+            &times;
           </a>
-          </Right>
-          <Title>
+        </Right>
+        <Title>
           Login Form
-          </Title>
-          <Left>
+        </Title>
+        <Left>
           <form>
-            <div className = "form-group">
-            <Label className="form-label"> <br/>Email : <br/> </Label> 
-            <input type="email"
-            value={email}
-            placeholder="Enter email" 
-            onChange={(e) => setEmail(e.target.value)}/>
+            <div className="form-group">
+              <Label className="form-label"> <br />Email : <br /> </Label>
+              <input type="email"
+                value={email}
+                placeholder="Enter email"
+                onChange={(e) => setEmail(e.target.value)} />
             </div>
-            <div className = "form-group">
-            <LabelPas className="form-label"><br/> Password : <br/> </LabelPas> 
-            <input type="password"
-            value={password}
-            placeholder="Enter password"  
-            onChange={(e) => setPassword(e.target.value)} />           
+            <div className="form-group">
+              <LabelPas className="form-label"><br /> Password : <br /> </LabelPas>
+              <input type="password"
+                value={password}
+                placeholder="Enter password"
+                onChange={(e) => setPassword(e.target.value)} />
             </div>
             <LeftButton>
-            <div className="Login">
-            <Button type = "submit" variant="primary" className = "btn btn-dark btn-lg btn-block" onClick={handleLogin}> Login </Button>
-            </div>
+              <div className="Login">
+                <Button type="submit" variant="primary" className="btn btn-dark btn-lg btn-block" onClick={handleLogin}> Login </Button>
+              </div>
             </LeftButton>
-            </form>
-            <Acc>
+          </form>
+          <Acc>
             <a align="center" href>  Don't Have Account ?
-            <Popup onClick={close} modal trigger={<u> Sign Up</u>}>
-            {close => <Regis close={close} />}
-            </Popup>
-            </a> 
-            </Acc>
-            </Left> 
-            </div> 
-            </Section>
-        )
-      }
+              <Popup onClick={close} modal trigger={<u> Sign Up</u>}>
+                {close => <Regis close={close} />}
+              </Popup>
+            </a>
+          </Acc>
+        </Left>
+      </div>
+    </Section>
+  )
+}
 export default Login;

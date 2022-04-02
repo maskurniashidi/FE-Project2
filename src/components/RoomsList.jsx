@@ -8,7 +8,6 @@ export default function RoomsList() {
 
     const [data, getData] = useState([]);
     const [loading, setLoading] = useState(false);
-
     useEffect(() => {
         axios.get(`http://127.0.0.1:8000/api/service`)
             .then((res) => {
@@ -22,21 +21,20 @@ export default function RoomsList() {
     }, []); 
     
     if (loading) { return <p>Data is loading...</p>; }
-
     return (
         <Container className="grid" display="inline-block">
-            <div class="row row-cols-3">
-            {Object.keys(data).map((item, i) => (
-                    <Card>
+            <div className ="row row-cols-3">
+            {data.map((item, i) => (
+                    <Card key={i}>
                         <Card.Body>
-                            <NavLink to= {`/SingleRoom/${data[item].id}`} style={{ textDecoration: 'none' }}>
-                            
-                            {data[item].images.map((image) => (
-                                     <img class="card-img-top" src={image.image_url} alt="Card image cap"></img>
-                                     ))}
-                                      <div class="card-body">
-                                           <Card.Title>{data[item].name}</Card.Title>
-                                           <Card.Text> {data[item].description}</Card.Text>
+                            <NavLink to= {'/rooms/'+ item.id} style={{ textDecoration: 'none' }}>
+                            {/* {item.images.map((image, b) => (
+                                     <img className="card-img-top" src={image.image_url} alt="Card image cap" key={b}></img>
+                                     ))} */}
+                                     <img className="card-img-top" src={item.images[0].image_url} alt="Card image cap"></img>
+                                      <div className="card-body">
+                                           <Card.Title>{item.name}</Card.Title>
+                                           <Card.Text> {item.description.substring(0, 100) + '.....'}</Card.Text>
                                       </div>
                             </NavLink> 
                         </Card.Body>

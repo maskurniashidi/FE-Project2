@@ -2,10 +2,9 @@ import React from 'react'
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Card, Container, Button } from 'react-bootstrap';
-import { useParams } from 'react-router-dom';
-import Hero from '../components/Hero'
-import Banner from '../components/Banner';
-import { Link } from 'react-router-dom';
+import { useParams, NavLink } from 'react-router-dom';
+import Popup from 'reactjs-popup';
+import Process from "../pages/Process"
 
 export default function SingleRoom() {
   const [data, getData] = useState([]);
@@ -25,31 +24,31 @@ export default function SingleRoom() {
       .catch((err) => {
         console.log(err);
       }).finally(() => { setLoading(false); });;
-  }, []);
+  },[]);
 
   if (loading) { return <p>Data is loading...</p>; }
 
+
   return (
+
     <div>
-    <Container className="grid" display="inline-block">
-      <div class="row row-cols-1">
+      <Container className="grid" display="inline-block">
+        <div class="row row-cols-1">
           <Card>
             <Card.Body>
-            {/* {Object.keys(image).map((data) => (
+              {/* {Object.keys(image).map((data) => (
              <div>
              {image.images.map((image) => (
               <img class="card-img-top" src={image.image_url} alt="Card image cap"/>
               ))}
              </div>
               ))}  */}
-              <div className ="row row-cols-2">
-              {
-                Object.keys(array).map((data, i) => (
-                 <img key={i} class="card-img-top" src={array[i].image_url} alt="Card image cap"/> 
-                
-                ))
-              }
-
+              <div className="row row-cols-2">
+                {
+                  Object.keys(array).map((data, i) => (
+                    <img key={i} class="card-img-top" src={array[i].image_url} alt="Card image cap" />
+                  ))
+                }
               </div>
               <div class="card-body">
                 <Card.Title>{data.name}</Card.Title>
@@ -57,13 +56,22 @@ export default function SingleRoom() {
                 <Card.Text>{data.description}</Card.Text>
                 <Card.Text>Luas : {data.space} M²</Card.Text>
                 <Card.Text>Kapasitas : {data.capacity} Orang</Card.Text>
-                <Button>Pesan Sekarang</Button>
+                <Popup modal trigger={
+                  // <NavLink to={'/Process/' + data.id} style={{ textDecoration: 'none' }}>
+                    <Button>
+                      Pesan Sekarang
+                    </Button>
+
+                  //  </NavLink>}> 
+                }>
+                <Process/>
+                </Popup>
               </div>
             </Card.Body>
           </Card>
-         
-      </div>
-    </Container>
+
+        </div>
+      </Container>
     </div>
   );
 }

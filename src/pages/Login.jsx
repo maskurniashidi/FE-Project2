@@ -79,6 +79,7 @@ function Login({ close }) {
   const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
 
+
   useEffect(() => {
     if (email || password) {
       setError(false);
@@ -92,11 +93,17 @@ function Login({ close }) {
     //   password : password,
     // }
 
+    const config = {
+      headers: {
+        'Content-Type': "application/json",
+      },
+    };
+
     console.log(email, password);
     axios.post(baseURL + '/api/login', {
       email: email,
       password: password,
-    })
+    },config.headers)
 
       // const variables = {
       //                     email: email,
@@ -106,25 +113,28 @@ function Login({ close }) {
 
       .then(function (res) {
         //set token on localStorage
-        if (res.data.data.is_admin = "0"){
+        console.log(res);
+        if (res.data.data.user.is_admin === 0){
           setError(false);
           console.log(res);
           localStorage.setItem('token', res.data.data.token);
+          // localStorage.setItem('admin', res.data.data.is_admin);
           swal({
             icon: 'success',
             text: 'Berhasil',
           })
           window.location.reload();
         }
-       if(res.data.data.is_admin = "1"){
+      else if(res.data.data.user.is_admin === 1){
           setError(false);
           console.log(res);
           localStorage.setItem('token', res.data.data.token);
+          localStorage.setItem('admin', res.data.data.is_admin);
           swal({
             icon: 'success',
             text: 'Admin ni Boss',
           })
-          window.location.href = "/HomeAdmin/";
+          window.location.href = "/HomeAdmin";
         }
       }).catch((err) => {
         setError(true);

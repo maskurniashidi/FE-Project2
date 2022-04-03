@@ -51,46 +51,8 @@ const Desc2 = styled.p`
   text-align: center;
 `;
 
-const Button2 = styled.a`
-  display: flex;
-  text-align: center;
-  justify-content: center;
-  align-items: center;
-  border-radius: 18px;
-  margin-top: 20px;
-  margin-left: 36.5rem;
-  width: 250px;
-  height: 51px;
-  line-height: 71px;
-  font-size: 20px;
-  color: #333333;
-  cursor: pointer;
-  background: #FAE57C;
-  text-decoration: none;
-  box-shadow: 0 15px 14px rgb(0 42 177 / 12%);
-  position: absolute;
-  
-`;
 
 const Button = styled.a`
-  /* display: flex;
-  text-align: center;
-  justify-content: center;
-  align-items: center;
-  border-radius: 18px;
-  margin-top: 20px;
-  margin-left: 35rem;
-  width: 300px;
-  height: 51px;
-  line-height: 71px;
-  font-size: 20px;
-  color: #333333;
-  cursor: pointer;
-  background: #FAE57C;
-  text-decoration: none;
-  box-shadow: 0 15px 14px rgb(0 42 177 / 12%);
-  position: absolute; */
-  
   border-radius: 18px;
   margin-top: 30px;
   width: 250px;
@@ -99,9 +61,9 @@ const Button = styled.a`
   text-align: center;
   justify-content: center;
   align-items: center;
-  color: #333;
+  color: #ffff;
   cursor: pointer;
-  background: #FAE57C;
+  background: #0000FF;
   outline: none;
   text-decoration: none;
   box-shadow: 0 15px 14px rgb(0 42 177 / 12%);
@@ -111,8 +73,8 @@ const Button = styled.a`
     display: flex;
   &:hover {
     transition: all 0.3s ease-out;
-    background-color: var(--warning);
-    color: #fff;
+    background-color: #ffff;
+    color: #333;
     border-radius: 20px;
     border: 2px solid var(--warning);
   }

@@ -4,12 +4,16 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { Card, Container, Row, Col, Button, Figure,Table } from 'react-bootstrap';
 import Title from '../components/Title';
+import { useParams } from 'react-router-dom';
 
 export default function Order() {
 
     const [data, getData] = useState([]);
+    const { userId } = useParams();
+    const { id } = useParams();
+
     useEffect(() => {
-        axios.get(`http://127.0.0.1:8000/api/service/`)
+        axios.get(`http://127.0.0.1:8000/api/user/history/1`)
             .then((res) => {
                 console.log(res.data);
                 getData(res.data.data);

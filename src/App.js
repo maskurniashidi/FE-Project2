@@ -17,7 +17,9 @@ import Login from './pages/Login'
 import Bantuan from './components/Bantuan/Bantuan'
 import Navbarlogin from './components/NavbarLogin'
 import Order from './pages/Order'
+import Process from './pages/Process'
 import HomeAdmin from './pages/Admin/Home';
+// import NavbarAdmin from './pages/Admin/components/pages/components/AdminNavbar'
 
 function App() {
   const[loginNav, setloginNav] = useState(true) 
@@ -32,7 +34,7 @@ function App() {
  // },[])
  useEffect(() => {
  // const itLogin = () => {
-   if (localStorage.getItem("token")) {
+   if (localStorage.getItem("token" )) {
      console.log("berhasil")
      setloginNav(false);
    }
@@ -50,8 +52,8 @@ function App() {
      {loginNav
        ? (<Navbar />)
        : (<Navbarlogin />)
+  
      }
-
 
         {/* <Navbar/> */}
         <Switch>
@@ -65,10 +67,12 @@ function App() {
           <Route exact path="/Login" component={Login} />
           <Route exact path="/Bantuan" component={Bantuan} />
           <Route exact path="/Order" component={Order} />
-          <Route component={Error}/>
+          <Route exact path="/Process/:id" component={Process} />
+         
           {/* {/Ini Buat Admin/} */}
-          <Route exact path="/HomeAdmin/" component={HomeAdmin} />
+          <Route exact path="/HomeAdmin" component={HomeAdmin} />
 
+          <Route component={Error}/>
         </Switch>
         <FooterPage/>
       </Router>
@@ -77,3 +81,4 @@ function App() {
 }
 
 export default App;
+

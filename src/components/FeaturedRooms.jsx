@@ -70,7 +70,7 @@ export default function FeatureRoom() {
         axios.get(`http://127.0.0.1:8000/api/service`)
             .then((res) => {
                 console.log(res.data);
-                getData(res.data.data.slice(0,2));
+                getData(res.data.data.slice(0,3));
                 // setId(res.data.id);
             })
             .catch((err) => {
@@ -82,9 +82,11 @@ export default function FeatureRoom() {
 
     return (
         <div>
-            <h1>Featured Room</h1>
+        <section className="featured-rooms container">
+         <Title title="Layanan Unggulan" />
+         
         <Container className="grid" display="inline-block">
-        <div className ="row row-cols-3">
+        <div className ="row row-cols-3" color='#fffff'>
         {data.map((item, i) => (
                 <Card key={i}>
                     <Card.Body >
@@ -98,7 +100,7 @@ export default function FeatureRoom() {
                                        <Card.Title>{item.name}</Card.Title>
                                        <Card.Text>Rp. {item.prices[0].price}</Card.Text>
                                        <Link to= {'/rooms/'+ item.id} style={{ textDecoration: 'none' }} >
-                                       <Button > Detail </Button>
+                                       <Button  > Detail </Button>
                                        </Link>
                                   </div>
                          
@@ -107,6 +109,7 @@ export default function FeatureRoom() {
                           ))}
         </div>
     </Container>
+    </section>
     </div>
     );
 }

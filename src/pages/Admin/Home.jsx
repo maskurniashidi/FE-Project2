@@ -1,72 +1,44 @@
-import React, { useEffect, useState } from "react";
-import { useHistory } from 'react-router-dom';
-// import StatusCard from './components/StatusCard';
-// import News from './components/NewsCard';
-// import Message from './components/MessageCard';
-// import Sidebar from "./components/Sidebar";
-import { CONTACT, NEWS } from "./Url";
-import { getToken, logout } from './Auth';
-import axios from 'axios';
+import React from 'react';
+import { useState } from "react";
+// node.js library that concatenates classes (strings)
+import classnames from "classnames";
+// javascipt plugin for creating charts
+//import Chart from "./variables/charts";
+// react plugin used to create charts
+//import { Line, Bar } from "react-chartjs-2";
+// reactstrap components
+import {
+  Button,
+  Card,
+  CardHeader,
+  CardBody,
+  NavItem,
+  NavLink,
+  Nav,
+  Progress,
+  Table,
+  Container,
+  Row,
+  Col,
+} from "reactstrap";
+import { useLocation, Route, Switch, Redirect } from "react-router-dom";
+import Sidebar from "../../components/Sidebar.js"
+// import Header from "../../components/Header.js";
 
-const HomeAdmin = () => {
-    const history = useHistory();
-    // const [sumContact, setSumContact] = useState();
-    // const [sumNews, setSumNews] = useState();
-    // const [dataContact, setDataContact] = useState([]);
-    // const [dataNews, setDataNews] = useState([]);
 
-    useEffect(() => {
-        async function getStatus() {
-            try{
-                const tokenRespon = await getToken();
-                if(tokenRespon === 400){
-                    alert("Authentifikasi Gagal, Silahkan Login Kembali");
-                    logout();
-                    history.replace("/HomeAdmin");
-                } else{
-                    const contactRespon = await axios.get(CONTACT + "latest", {
-                        headers: { Authorization: `Bearer ${tokenRespon}`}
-                    });
-                    //setApiData(newsRespon.data);
-                    console.log(contactRespon.data);
-                    // setSumContact(contactRespon.data.sumContacts);
-                    // setDataContact(contactRespon.data.latestContacts);
+function Home (props) {
+  const [activeNav, setActiveNav] = useState(1);
 
-                    axios.get(NEWS + "latest")
-                    .then((res) => {
-                        console.log(res.data);
-                        // setSumNews(res.data.sumNewsposts);
-                        // setDataNews(res.data.latestNewspost);
-                    }).catch((err) => {
-                        console.log(err);
-                    });
-                }
-            } catch(err){
-                console.log(err);
-            }
-        };
-        getStatus();
-    },[]);
-    
-    // console.log(dataNews)
+  const toggleNavs = (e, index) => {
+    e.preventDefault();
+    setActiveNav(index);
+    //setChartExample1Data("data" + index);
+  };
   return (
-    <div>
-      {/* <Sidebar /> */}
-      <div className="md:ml-64">
-        <div className="pt-8 p-8 md:pb-16 px-3 md:px-8 h-auto">
-            <div className="container mx-auto max-w-full">
-              {/* <StatusCard contact={sumContact} news={sumNews}/> */}
-            </div>
-        </div>
-        <div className="mb-16 px-3 md:px-8 h-auto">
-          {/* <News contentNews={dataNews}/> */}
-        </div>
-        <div className="mb-16 px-3 md:px-8 h-auto">
-          {/* <Message contentContact={dataContact}/> */}
-        </div>
-      </div>
-    </div>
+    <>
+      <Sidebar/>
+    </>
   );
-}
+};
 
-export default HomeAdmin;
+export default Home;

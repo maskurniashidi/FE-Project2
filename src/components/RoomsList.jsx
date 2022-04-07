@@ -2,7 +2,7 @@ import React from 'react'
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Card, Container, Row, Col, Button, Figure } from 'react-bootstrap';
-import { useHistory, NavLink} from 'react-router-dom';
+import { useHistory, NavLink, Link} from 'react-router-dom';
 
 export default function RoomsList() {
 
@@ -27,7 +27,7 @@ export default function RoomsList() {
             {data.map((item, i) => (
                     <Card key={i}>
                         <Card.Body>
-                            <NavLink to= {'/rooms/'+ item.id} style={{ textDecoration: 'none' }}>
+                            {/* <NavLink to= {'/rooms/'+ item.id} style={{ textDecoration: 'none' }}> */}
                             {/* {item.images.map((image, b) => (
                                      <img className="card-img-top" src={image.image_url} alt="Card image cap" key={b}></img>
                                      ))} */}
@@ -35,8 +35,12 @@ export default function RoomsList() {
                                       <div className="card-body">
                                            <Card.Title>{item.name}</Card.Title>
                                            <Card.Text> {item.description.substring(0, 100) + '.....'}</Card.Text>
+                                           <Card.Text>Rp. {item.prices[0].price},00</Card.Text>
                                       </div>
-                            </NavLink> 
+                                      <Link to= {'/rooms/'+ item.id} style={{ textDecoration: 'none' }} >
+                                       <Button  > Detail </Button>
+                                       </Link>
+                            {/* </NavLink>  */}
                         </Card.Body>
                     </Card>
                               ))}

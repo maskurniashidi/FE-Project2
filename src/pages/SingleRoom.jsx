@@ -36,13 +36,7 @@ export default function SingleRoom() {
         <div class="row row-cols-1">
           <Card>
             <Card.Body>
-              {/* {Object.keys(image).map((data) => (
-             <div>
-             {image.images.map((image) => (
-              <img class="card-img-top" src={image.image_url} alt="Card image cap"/>
-              ))}
-             </div>
-              ))}  */}
+          
               <div className="row row-cols-2">
                 {
                   Object.keys(array).map((data, i) => (
@@ -54,18 +48,22 @@ export default function SingleRoom() {
                 <Card.Title>{data.name}</Card.Title>
                 <Card.Text>Deskripsi : </Card.Text>
                 <Card.Text>{data.description}</Card.Text>
+                {/* <Card.Text>Rp. {item.prices[0].price}</Card.Text> */}
+           
                 <Card.Text>Luas : {data.space} M²</Card.Text>
                 <Card.Text>Kapasitas : {data.capacity} Orang</Card.Text>
-                <Popup modal trigger={
-                  // <NavLink to={'/Process/' + data.id} style={{ textDecoration: 'none' }}>
-                    <Button>
+             
+                {/* <Popup modal trigger={ */}
+                    <Button href={'/Process/'+id}>
                       Pesan Sekarang
                     </Button>
 
-                  //  </NavLink>}> 
-                }>
-                <Process/>
-                </Popup>
+                    {/* </NavLink>}>  */}
+                 {/* }> */}
+
+
+       
+                {/* </Popup> */}
               </div>
             </Card.Body>
           </Card>

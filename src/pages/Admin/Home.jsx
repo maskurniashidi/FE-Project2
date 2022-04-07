@@ -1,5 +1,6 @@
 import React from 'react';
 import { useState } from "react";
+// import Sidebar from "../../components/sidebar/Sidebar"
 // node.js library that concatenates classes (strings)
 import classnames from "classnames";
 // javascipt plugin for creating charts
@@ -22,7 +23,7 @@ import {
   Col,
 } from "reactstrap";
 import { useLocation, Route, Switch, Redirect } from "react-router-dom";
-import Sidebar from "../../components/Sidebar.js"
+// import Sidebar from "../../components/Sidebar.js"
 // import Header from "../../components/Header.js";
 
 
@@ -36,7 +37,8 @@ function Home (props) {
   };
   return (
     <>
-      <Sidebar/>
+      {/* <Sidebar/> */}
+      
     </>
   );
 };

@@ -90,10 +90,6 @@ export default function FeatureRoom() {
         {data.map((item, i) => (
                 <Card key={i}>
                     <Card.Body >
-                       
-                        {/* {item.images.map((image, b) => (
-                                 <img className="card-img-top" src={image.image_url} alt="Card image cap" key={b}></img>
-                                 ))} */}
                                  <img className="card-img-top" src={item.images[0].image_url} alt="Card image cap"></img>
                                   <div className="card-body" >
                                  

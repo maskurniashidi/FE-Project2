@@ -13,7 +13,7 @@ export default function Order() {
     const { id } = useParams();
 
     useEffect(() => {
-        axios.get(`http://127.0.0.1:8000/api/user/history/1`)
+        axios.get(`http://127.0.0.1:8000/api/user/history/` +id)
             .then((res) => {
                 console.log(res.data);
                 getData(res.data.data);
@@ -27,41 +27,27 @@ export default function Order() {
     return (
         <Container className="grid" display="inline-block">
             <Title title="Pesanan Saya" /> 
-            {/* <div class="row row-cols-3">
-            
-            
-                 <Card style={{ width: '18rem' }}>
-                     <p>{data[item].name}</p>
-              <img class="card-img-top" src={data[item].image_url} alt="Card image cap"></img>
-                 
-                    <div class="card-body">
-                                <Card.Title>{data[item].name}</Card.Title>
-                            <Card.Text> {data[item].description}</Card.Text>
-                    </div>
-                </Card>
-                ))}
-            </div> */}
 
                     <Table striped bordered hover>
                     <thead>
                         <tr>
                         <th>Name Service</th>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Username</th>
+                        <th>Rental Start</th>
+                        <th>Rental End</th>
+                        <th>Duration</th>
                         </tr>
                     </thead>
-                {Object.keys(data).map((item, i) => (
+                {/* {Object.keys(data).map((item, i) => ( */}
                     <tbody>
                         <tr>
-                        <td>{data[item].name}</td>
-                        <td>{data[item].description}</td>
-                        <td>{data[item].capacity}</td>
-                        <td>{data[item].space}</td>
+                        <td>{data.name}</td>
+                        <td>{data.rentalStart}</td>
+                        <td>{data.rentalEnd}</td>
+                        <td>{data.duration}</td>
                         </tr>
                         
                     </tbody>
-                     ))}
+                     {/* ))} */}
                 </Table>
                
         </Container>

@@ -118,6 +118,7 @@ function Login({ close }) {
           setError(false);
           console.log(res);
           localStorage.setItem('token', res.data.data.token);
+          localStorage.setItem('idUser', res.data.data.user.id);
           // localStorage.setItem('admin', res.data.data.is_admin);
           swal({
             icon: 'success',

@@ -43,38 +43,39 @@ export default function Process({ close }) {
   const [array, getArray] = useState([]);
   const [arrayImages, getArrayImages] = useState([]);
   const [validated, setValidated] = useState(false);
+  const [iteration, setIteration] = useState(0);
   // const { userId } = useParams();
   const { id } = useParams();
-  // const rents = [
-  //     {
-  //         service_id: 4,
-  //         user_id: 1,
-  //         rentalStart: "2022-03-01 10:32:15",
-  //         rentalEnd: "2022-03-01 17:32:15",
-  //         duration: 2
-  //     },
-  //     {
-  //         service_id: 2,
-  //         user_id: 1,
-  //         rentalStart: "2022-03-01 10:32:15",
-  //         rentalEnd: "2022-03-01 17:32:15",
-  //         duration: 2
-  //     },
-  //     {
-  //         service_id: 2,
-  //         user_id: 1,
-  //         rentalStart: "2022-03-01 10:32:15",
-  //         rentalEnd: "2022-03-01 17:32:15",
-  //         duration: 2
-  //     }
-  // ]
-  const [rents, setRents] = useState({
-    service_id: parseInt(id),
-    user_id: parseInt(idUser),
-    rentalStart: getDateStart.date + "-" + getDateStart.month + "-" + getDateStart.year + " " + getDateStart.time,
-    rentalEnd: getDateEnd.date + "-" + getDateEnd.month + "-" + getDateEnd.year + " " + getDateEnd.time,
-    duration: duration,
-  });
+  const rents = [
+    {
+      service_id: 4,
+      user_id: 1,
+      rentalStart: "2022-03-01 10:32:15",
+      rentalEnd: "2022-03-01 17:32:15",
+      duration: 2,
+    },
+    {
+      service_id: 2,
+      user_id: 1,
+      rentalStart: "2022-03-01 10:32:15",
+      rentalEnd: "2022-03-01 17:32:15",
+      duration: 2,
+    },
+    {
+      service_id: 2,
+      user_id: 1,
+      rentalStart: "2022-03-01 10:32:15",
+      rentalEnd: "2022-03-01 17:32:15",
+      duration: 2,
+    },
+  ];
+  // const [rents, setRents] = useState({
+  //   service_id: parseInt(id),
+  //   user_id: parseInt(idUser),
+  //   rentalStart: getDateStart.date + "-" + getDateStart.month + "-" + getDateStart.year + " " + getDateStart.time,
+  //   rentalEnd: getDateEnd.date + "-" + getDateEnd.month + "-" + getDateEnd.year + " " + getDateEnd.time,
+  //   duration: duration,
+  // });
   const [concatRents, setConcatRents] = useState([]);
   console.log(getDateStart);
   console.log(getDateEnd);
@@ -97,23 +98,19 @@ export default function Process({ close }) {
         console.log(err);
       });
   }, []);
+  console.log("testing lagi");
 
   const addRents = () => {
-    setRents({
-      service_id: parseInt(id),
-      user_id: parseInt(idUser),
-      rentalStart: getDateStart.date + "-" + getDateStart.month + "-" + getDateStart.year + " " + getDateStart.time,
-      rentalEnd: getDateEnd.date + "-" + getDateEnd.month + "-" + getDateEnd.year + " " + getDateEnd.time,
-      duration: duration,
-    });
-    console.log(rents);
-    if (concatRents.length === 0) {
-      setConcatRents(rents);
-      console.log("test");
-    } else {
-      setConcatRents(concatRents.push(rents));
-    }
-    console.log(concatRents);
+    // setRents({
+    //   service_id: parseInt(id),
+    //   user_id: parseInt(idUser),
+    //   rentalStart: getDateStart.year + "-" + getDateStart.month + "-" + getDateStart.date + " " + getDateStart.time,
+    //   rentalEnd: getDateEnd.year + "-" + getDateEnd.month + "-" + getDateEnd.date + " " + getDateEnd.time,
+    //   duration: duration,
+    // });
+    // var allRentsData = [];
+    // allRentsData.push(rents);
+    // console.log(allRentsData);
   };
 
   function handleOrder(event) {
@@ -128,7 +125,7 @@ export default function Process({ close }) {
     if (localStorage.getItem("token", token)) {
       for (let i = 0; i < concatRents.length; i++) {
         axios
-          .post("http://127.0.0.1:8000/api/rent", concatRents[i], config)
+          .post("http://127.0.0.1:8000/api/rents", concatRents[i], config)
           .then(function (res) {
             setError(false);
             console.log(res);
@@ -161,46 +158,11 @@ export default function Process({ close }) {
         </a>
       </Right>
       <Card>
-        {/* {
-              Object.keys(arrayImages).map((data, i) => (
-                <img key={i} class="card-img-top" src={arrayImages[0].image_url} alt="Card image cap" />
-              ))
-            } */}
         <Card.Title>{data.name}</Card.Title>
 
         <Card.Body>
           <Form noValidate validated={validated} onSubmit={handleOrder}>
-            {/* <Row className="mb-3">
-                        <Form.Group as={Col} md="4" controlId="validationEmail">
-                            <Form.Label>Email</Form.Label>
-                            <Form.Control
-                                required
-                                type="email"
-                                placeholder="Email"
-                                Value={setEmail}
-                            />
-                            <Form.Control.Feedback type="invalid">
-                                Please fill Email.
-                            </Form.Control.Feedback>
-                        </Form.Group>
-                        <Form.Group as={Col} md="4" controlId="validationUsername">
-                            <Form.Label>Username</Form.Label>
-                            <InputGroup hasValidation>
-                                <Form.Control
-                                    required
-                                    type="text"
-                                    placeholder="Full Name"
-                                    Value={setName}
-                                />
-                                <Form.Control.Feedback type="invalid">
-                                    Please fill Username.
-                                </Form.Control.Feedback>
-                            </InputGroup>
-                        </Form.Group>
-                    </Row> */}
             <Row className="mb-3">
-              {/* <Form.Label>{data.name}</Form.Label> */}
-
               <LocalizationProvider dateAdapter={AdapterDateFns}>
                 <DateTimePicker
                   renderInput={(props) => <TextField {...props} />}
@@ -258,19 +220,7 @@ export default function Process({ close }) {
                     <option value={array[i].duration}>{array[i].duration} Hours</option>
                   ))}
                 </Form.Select>
-                {/* <Form.Control
-                                required
-                                type="text"
-                                Value={setDuration}
-                            /> */}
               </Form.Group>
-
-              {/* <div className="btn-box">
-                             {inputList.length !== 1 && <button
-                             className="mr10"
-                             onClick={() => handleRemoveClick(i)}>Remove</button>}
-                            {inputList.length - 1 === i && <button onClick={handleAddClick}>Add</button>}
-                        </div> */}
             </Row>
 
             {Object.keys(concatRents).map((item) => (
@@ -283,37 +233,10 @@ export default function Process({ close }) {
               <Form.Check required label="Agree to terms and conditions" feedback="You must agree before submitting." feedbackType="invalid" />
             </Form.Group>
 
-            <Button onClick={handleOrder} type="submit">
-              Submit
-            </Button>
-            {/* <Button onClick={handleOrder}>Coba</Button> */}
+            <Button type="submit">Submit</Button>
+            <Button onClick={handleOrder}>Coba</Button>
           </Form>
-          <button
-            onClick={() => {
-              var dataRents = {
-                service_id: parseInt(id),
-                user_id: parseInt(idUser),
-                rentalStart: getDateStart.date + "-" + getDateStart.month + "-" + getDateStart.year + " " + getDateStart.time,
-                rentalEnd: getDateEnd.date + "-" + getDateEnd.month + "-" + getDateEnd.year + " " + getDateEnd.time,
-                duration: duration,
-              };
-              setRents({
-                ...dataRents,
-              });
-              if (concatRents.length === 0) {
-                setConcatRents({ dataRents });
-                console.log("test");
-              } else {
-                setConcatRents(concatRents.push(rents));
-              }
-              console.log(concatRents);
-              console.log(dataRents);
-              console.log(rents);
-            }}
-          >
-            {" "}
-            +{" "}
-          </button>
+          <button onClick={addRents}> + </button>
         </Card.Body>
       </Card>
     </Container>

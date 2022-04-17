@@ -11,6 +11,7 @@ import TextField from "@mui/material/TextField";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DateTimePicker } from "@mui/x-date-pickers/DateTimePicker";
+import RentForm from "./RentForm";
 // import DateTimePicker from 'react-bootstrap-date-time-picker';
 
 const Right = styled.div`
@@ -26,14 +27,14 @@ export default function Process({ close }) {
   //const [name, setName] = useState([]);
   const [rentStart, setRentStart] = useState(new Date());
   const [getDateStart, setGetDateStart] = useState({
-    date: rentStart.toString().slice(8, 10),
-    month: (rentStart.getMonth() + 1).toString(),
+    day: rentStart.toDateString().slice(8, 10),
+    month: (rentStart.getMonth()+ 1).toString(),
     year: rentStart.getFullYear().toString(),
     time: rentStart.toString().slice(16, 24),
   });
   const [rentEnd, setRentEnd] = useState(new Date());
   const [getDateEnd, setGetDateEnd] = useState({
-    date: rentEnd.toString().slice(8, 10),
+    day: rentEnd.toString().slice(8, 10),
     month: (rentEnd.getMonth() + 1).toString(),
     year: rentEnd.getFullYear().toString(),
     time: rentEnd.toString().slice(16, 24),
@@ -46,40 +47,44 @@ export default function Process({ close }) {
   const [iteration, setIteration] = useState(0);
   // const { userId } = useParams();
   const { id } = useParams();
-  const rents = [
-    {
-      service_id: 4,
-      user_id: 1,
-      rentalStart: "2022-03-01 10:32:15",
-      rentalEnd: "2022-03-01 17:32:15",
-      duration: 2,
-    },
-    {
-      service_id: 2,
-      user_id: 1,
-      rentalStart: "2022-03-01 10:32:15",
-      rentalEnd: "2022-03-01 17:32:15",
-      duration: 2,
-    },
-    {
-      service_id: 2,
-      user_id: 1,
-      rentalStart: "2022-03-01 10:32:15",
-      rentalEnd: "2022-03-01 17:32:15",
-      duration: 2,
-    },
-  ];
-  // const [rents, setRents] = useState({
-  //   service_id: parseInt(id),
-  //   user_id: parseInt(idUser),
-  //   rentalStart: getDateStart.date + "-" + getDateStart.month + "-" + getDateStart.year + " " + getDateStart.time,
-  //   rentalEnd: getDateEnd.date + "-" + getDateEnd.month + "-" + getDateEnd.year + " " + getDateEnd.time,
-  //   duration: duration,
-  // });
-  const [concatRents, setConcatRents] = useState([]);
-  console.log(getDateStart);
-  console.log(getDateEnd);
-  console.log(rentStart.toString(), rentEnd.toString(), duration, parseInt(id), parseInt(idUser));
+  // const rents = useState();
+  //   {
+  //     service_id: 4,
+  //     user_id: 1,
+  //     rentalStart: "2022-03-01 10:32:15",
+  //     rentalEnd: "2022-03-01 17:32:15",
+  //     duration: 2,
+  //   },
+  //   {
+  //     service_id: 2,
+  //     user_id: 1,
+  //     rentalStart: "2022-03-01 10:32:15",
+  //     rentalEnd: "2022-03-01 17:32:15",
+  //     duration: 2,
+  //   },
+  //   {
+  //     service_id: 2,
+  //     user_id: 1,
+  //     rentalStart: "2022-03-01 10:32:15",
+  //     rentalEnd: "2022-03-01 17:32:15",
+  //     duration: 2,
+  //   },
+  // ];
+
+  const [rents, setRents] = useState([{
+    //id: 13121,
+    service_id: parseInt(id),
+    user_id: parseInt(idUser),
+    rentalStart: getDateStart.year + "-" + getDateStart.month + "-" + getDateStart.day + " " + getDateStart.time,
+    rentalEnd: getDateEnd.year + "-" + getDateEnd.month + "-" + getDateEnd.day + " " + getDateEnd.time,
+    duration: duration,
+  }]);
+
+  console.log(rents);
+  // const [concatRents, setConcatRents] = useState([]);
+  // console.log(getDateStart);
+  // console.log(getDateEnd);
+  // console.log(rentStart.toString(), rentEnd.toString(), duration, parseInt(id), parseInt(idUser));
   const handleDuration = (event) => {
     setDuration(parseInt(event.target.value));
   };
@@ -98,9 +103,60 @@ export default function Process({ close }) {
         console.log(err);
       });
   }, []);
-  console.log("testing lagi");
+  var allRentsData = [];
+
+  const onChangeStart = (inputId, newValue) => {
+    console.log(newValue);
+    setRents(prev => prev.map(rent => {
+      if (rent.id === inputId) {
+        return {
+          ...rent,
+          rentalStart: newValue
+        };
+      }
+
+      return rent;
+    }))
+  }
+
+  const onChangeEnd = (inputId, newValue) => {
+    setRents(prev => prev.map(rent => {
+      if (rent.id === inputId) {
+        return {
+          ...rent,
+          rentalEnd: newValue
+        };
+      }
+
+      return rent;
+    }))
+  }
+
+  const onChangeDuration = (inputId, newValue) => {
+    setRents(prev => prev.map(rent => {
+      if (rent.id === inputId) {
+        return {
+          ...rent,
+          duration: newValue
+        };
+      }
+
+      return rent;
+    }))
+  }
 
   const addRents = () => {
+    setRents(prev => [
+      ...prev,
+      {
+        id: Math.floor(Math.random() * 10000),
+        service_id: parseInt(id),
+        user_id: parseInt(idUser),
+        rentalStart: getDateStart.year + "-" + getDateStart.month + "-" + getDateStart.day + " " + getDateStart.time,
+        rentalEnd: getDateEnd.year + "-" + getDateEnd.month + "-" + getDateEnd.day + " " + getDateEnd.time,
+        duration: duration,
+      }
+    ]);
     // setRents({
     //   service_id: parseInt(id),
     //   user_id: parseInt(idUser),
@@ -108,7 +164,6 @@ export default function Process({ close }) {
     //   rentalEnd: getDateEnd.year + "-" + getDateEnd.month + "-" + getDateEnd.date + " " + getDateEnd.time,
     //   duration: duration,
     // });
-    // var allRentsData = [];
     // allRentsData.push(rents);
     // console.log(allRentsData);
   };
@@ -123,9 +178,9 @@ export default function Process({ close }) {
     };
 
     if (localStorage.getItem("token", token)) {
-      for (let i = 0; i < concatRents.length; i++) {
+
         axios
-          .post("http://127.0.0.1:8000/api/rents", concatRents[i], config)
+          .post("http://127.0.0.1:8000/api/rents", rents, config)
           .then(function (res) {
             setError(false);
             console.log(res);
@@ -136,12 +191,12 @@ export default function Process({ close }) {
           })
           .catch((err) => {
             setError(true);
+            console.log(err);
             swal({
               icon: "error",
               text: "Maaf! Terjadi Kesalahan",
             });
           });
-      }
     } else {
       swal({
         icon: "warning",
@@ -163,72 +218,17 @@ export default function Process({ close }) {
         <Card.Body>
           <Form noValidate validated={validated} onSubmit={handleOrder}>
             <Row className="mb-3">
-              <LocalizationProvider dateAdapter={AdapterDateFns}>
-                <DateTimePicker
-                  renderInput={(props) => <TextField {...props} />}
-                  label="Start"
-                  value={rentStart}
-                  onChange={(newValue) => {
-                    setRentStart(newValue);
-                    setGetDateStart({
-                      date: rentStart.toString().slice(8, 10),
-                      month: (rentStart.getMonth() + 1).toString(),
-                      year: rentStart.getFullYear().toString(),
-                      time: rentStart.toString().slice(16, 24),
-                    });
-                    if (rentStart.getMonth() + 1 < 10) {
-                      setGetDateStart({
-                        date: rentStart.toString().slice(8, 10),
-                        month: "0" + (rentStart.getMonth() + 1).toString(),
-                        year: rentStart.getFullYear().toString(),
-                        time: rentStart.toString().slice(16, 24),
-                      });
-                    }
-                  }}
-                />
-              </LocalizationProvider>
-
-              <LocalizationProvider dateAdapter={AdapterDateFns}>
-                <DateTimePicker
-                  renderInput={(props) => <TextField {...props} />}
-                  label="Until"
-                  value={rentEnd}
-                  onChange={(newValue) => {
-                    setRentEnd(newValue);
-                    setGetDateEnd({
-                      date: rentEnd.toString().slice(8, 10),
-                      month: (rentEnd.getMonth() + 1).toString(),
-                      year: rentEnd.getFullYear().toString(),
-                      time: rentEnd.toString().slice(16, 24),
-                    });
-                    if (rentEnd.getMonth() + 1 < 10) {
-                      setGetDateEnd({
-                        date: rentEnd.toString().slice(8, 10),
-                        month: "0" + (rentEnd.getMonth() + 1).toString(),
-                        year: rentEnd.getFullYear().toString(),
-                        time: rentEnd.toString().slice(16, 24),
-                      });
-                    }
-                  }}
-                />
-              </LocalizationProvider>
-
-              <Form.Group as={Col} md="4" controlId="validationDuration">
-                <Form.Label>Duration</Form.Label>
-                <Form.Select aria-label="Select Duration" Value={duration} onChange={handleDuration}>
-                  {Object.keys(array).map((i) => (
-                    <option value={array[i].duration}>{array[i].duration} Hours</option>
-                  ))}
-                </Form.Select>
-              </Form.Group>
+              
+              {rents.map(rent => 
+                <RentForm 
+                   key={rent.id} 
+                  rentStart={rent.rentalStart} 
+                  rentEnd={rent.rentalEnd} 
+                  setRentStart={onChangeStart.bind(null, rent.id)} 
+                  setRentEnd={onChangeEnd.bind(null, rent.id)}
+                  setDuration={onChangeDuration.bind(null, rent.id)}
+                  durationList={array} />)}
             </Row>
-
-            {Object.keys(concatRents).map((item) => (
-              <div>
-                <span>{concatRents[item].rentalStart}</span>
-                <span>{concatRents[item].rentalEnd}</span>
-              </div>
-            ))}
             <Form.Group className="mb-3">
               <Form.Check required label="Agree to terms and conditions" feedback="You must agree before submitting." feedbackType="invalid" />
             </Form.Group>
@@ -236,7 +236,7 @@ export default function Process({ close }) {
             <Button type="submit">Submit</Button>
             <Button onClick={handleOrder}>Coba</Button>
           </Form>
-          <button onClick={addRents}> + </button>
+          <button onClick={addRents}> Tambah </button>
         </Card.Body>
       </Card>
     </Container>

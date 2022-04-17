@@ -13,7 +13,7 @@ export default function Order() {
     const { id } = useParams();
 
     useEffect(() => {
-        axios.get(`http://127.0.0.1:8000/api/user/history/` +id)
+        axios.get(`http://127.0.0.1:8000/api/rent/` +id )
             .then((res) => {
                 console.log(res.data);
                 getData(res.data.data);
@@ -37,17 +37,18 @@ export default function Order() {
                         <th>Duration</th>
                         </tr>
                     </thead>
-                {/* {Object.keys(data).map((item, i) => ( */}
-                    <tbody>
+                    
+                    {data.map((item, i) => (
+                    <tbody key={i}>
                         <tr>
-                        <td>{data.name}</td>
-                        <td>{data.rentalStart}</td>
-                        <td>{data.rentalEnd}</td>
-                        <td>{data.duration}</td>
+                        <td>{item.name}</td>
+                        <td>{item.rentalStart}</td>
+                        <td>{item.rentalEnd}</td>
+                        <td>{item.duration}</td>
                         </tr>
                         
                     </tbody>
-                     {/* ))} */}
+                       ))}
                 </Table>
                
         </Container>
